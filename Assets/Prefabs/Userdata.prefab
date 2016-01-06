@@ -9,7 +9,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 426710}
   - 114: {fileID: 11444498}
-  - 114: {fileID: 11487096}
   m_Layer: 0
   m_Name: Userdata
   m_TagString: Untagged
@@ -40,67 +39,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 064f48376c2893d429c2ccb35be39544, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  participantAge: 11
-  participantGender: femenine
-  gender: 1
-  participantNumber: 11
---- !u!114 &11487096
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 184304}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37e451bbfd989dc4095caa8094817356, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Tasknumber: {fileID: 0}
-  tasknumber: {fileID: 0}
-  Weightnumber: {fileID: 0}
-  weightnumber: {fileID: 0}
-  Settings: {fileID: 0}
-  settings: {fileID: 0}
-  CorrectButton: {fileID: 0}
-  correctButton: {fileID: 0}
-  Useranswer: {fileID: 0}
-  useranswer: {fileID: 0}
-  CubePosition: {fileID: 0}
-  cubePosition: {fileID: 0}
-  ParticipantNumber: {fileID: 0}
-  participantNumber: {fileID: 0}
-  UserData: {fileID: 0}
-  userData: {fileID: 0}
-  Tasknumber2: {fileID: 0}
-  tasknumber2: {fileID: 0}
-  CorrectScore: {fileID: 0}
-  correctScore: {fileID: 0}
-  Balanceresult: {fileID: 0}
-  balanceresult: {fileID: 0}
-  Balancerequired: {fileID: 0}
-  balancerequired: {fileID: 0}
-  sceneName: 
-  logFileName: 
-  loggedTask: 0
-  loggedCorrect: 0
-  loggedUserButton: 0
-  loggedCorrectButton: 0
-  loggedLevelNumber: 0
-  loggedScore: 0
-  loggedNumberWeightsRed: 0
-  loggedNumberWeightsYellow: 0
-  PosRed1: {fileID: 0}
-  PosRed2: {fileID: 0}
-  PosYellow1: {fileID: 0}
-  PosYellow2: {fileID: 0}
-  posRed1: {fileID: 0}
-  posRed2: {fileID: 0}
-  posYellow1: {fileID: 0}
-  posYellow2: {fileID: 0}
-  posRed1Int: 0
-  posRed2Int: 0
-  posYellow1Int: 0
-  posYellow2Int: 0
+  participantAge: 
+  participantGender: 
+  gender: 0
+  participantNumber: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

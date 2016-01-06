@@ -146,7 +146,7 @@ Camera:
     height: 1
   near clip plane: .300000012
   far clip plane: 1500
-  field of view: 60
+  field of view: 39
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -209,9 +209,9 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: .523936927, g: .706133783, b: .850980401, a: 1}
-    m_HighlightedColor: {r: .450826615, g: .641635597, b: .80392158, a: 1}
-    m_PressedColor: {r: .389250308, g: .553997576, b: .694117665, a: 1}
+    m_NormalColor: {r: .792019188, g: .602076113, b: .941176474, a: 1}
+    m_HighlightedColor: {r: .445718139, g: .238429934, b: .661764741, a: 1}
+    m_PressedColor: {r: .629757822, g: .734470069, b: .823529422, a: 1}
     m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .501960814}
     m_ColorMultiplier: 1
     m_FadeDuration: .100000001
@@ -277,7 +277,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 392752240}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 447408867}
@@ -286,7 +286,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 9, y: -97}
+  m_AnchoredPosition: {x: 9, y: -225}
   m_SizeDelta: {x: 326, y: 119}
   m_Pivot: {x: .5, y: .5}
 --- !u!1 &447408866
@@ -337,7 +337,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: a4556c7cafad75f4c9287b1815aafa5b, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
@@ -615,7 +615,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: f8890e0355773494da3d5adbd54d0faa, type: 2}
+  - {fileID: 2100000, guid: 8478cbbcfab602741a0fd7a188ae2304, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -684,15 +684,15 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1796546340}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 33}
+  m_LocalScale: {x: 1, y: 1.09862852, z: 1}
   m_Children: []
   m_Father: {fileID: 648350953}
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -20, y: 202}
-  m_SizeDelta: {x: 1064, y: 156}
+  m_AnchoredPosition: {x: 28, y: 35}
+  m_SizeDelta: {x: 1160, y: 387}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1796546342
 MonoBehaviour:
@@ -706,10 +706,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_Font: {fileID: 12800000, guid: 1e57dbf9b03b82247879e8cbade15696, type: 3}
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -719,11 +719,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '
-
-    The balance is something you can very often find in your environmemt. Can you
-    think of an applications for the balance? Think of a Seesaw on the playground...
-    But do you know how a balance works? Come and find out! '
+  m_Text: "You are an astronaut and landed on an alien planet on which different physical
+    laws apply. Your only way of exploring these laws is to use the balance you brought.
+    There are four laws to discover. At random intervalls you will receive a feedback
+    that either: Shows you the underlying workings of the balance, gives you a riddle
+    to detect the underlying rule or shows you the correct answer for your trial.
+    \nGood luck, astronaut! "
 --- !u!222 &1796546343
 CanvasRenderer:
   m_ObjectHideFlags: 0

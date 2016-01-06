@@ -29,8 +29,13 @@ public class Textfile : MonoBehaviour {
 	private Instruction CubePosition;
 	private GameObject cubePosition; 
 
-	private Userfinaldata FinalData;
-	private GameObject finalData; 
+	// Config Scene necessary Particpipant# & Age
+//	private Userfinaldata FinalData;
+//	private GameObject finalData; 
+
+	//Check which feedback is given: 0 = none, 1 = Animation of correct answer, 2 = TextFeedback
+	private Feedback FeedbackType;
+	private GameObject feedbackType; 
 	
 	private StreamWriter writer;  
 	string sceneName; 
@@ -66,13 +71,16 @@ public class Textfile : MonoBehaviour {
 		
 		useranswer = GameObject.Find ("Scale"); 
 		Useranswer = useranswer.GetComponent<Animate> ();
+
+		feedbackType = GameObject.Find ("Exercisemanager"); 
+		FeedbackType = feedbackType.GetComponent<Feedback> ();
 		
 		correctButton = GameObject.Find ("Scale");
 		CorrectButton = correctButton.GetComponent<ArduinoInputBehavior> (); 
 
-		finalData = GameObject.Find ("Userdata");
-		FinalData = finalData.GetComponent<Userfinaldata> ();
-		
+//		finalData = GameObject.Find ("Userdata");
+//		FinalData = finalData.GetComponent<Userfinaldata> ();
+//		
 		sceneName = Application.loadedLevelName; 
 
 //		Debug.Log (FinalData.gender.ToString ());
@@ -82,9 +90,11 @@ public class Textfile : MonoBehaviour {
 	}
 	
 	private void createLogFile(){
-		
-		string logFilePath = @"Assets\Resources\" + sceneName + "_balancescale_nr_";
-		// string logFilePath = @"FileManager\Resources\" + sceneName + "_balancescale_nr_"; // TabletVersion
+		// Creates Numbered log-files in assigned folder starting with nr_0
+
+		string logFilePath = Application.persistentDataPath + @"Assets\Resources\" + sceneName + "_balancescale_staticFeedback_nr_"; // For saving on Android Device
+		//string logFilePath = @"Assets\Resources\"  + sceneName + "_balancescale_nr_"; // For saving on the computer & Testing 
+
 		int version = 0;
 		logFileName = logFilePath + version + ".txt";
 		
@@ -96,30 +106,25 @@ public class Textfile : MonoBehaviour {
 		}
 		
 		writer = new StreamWriter (logFileName);
-		writer.Write ("Date and time: " + System.DateTime.Now.ToString());
-		writer.WriteLine (); 
-		writer.Write ("Participant #: " + FinalData.participantNumber.ToString ());
-		writer.WriteLine (); 
-		writer.Write ("Age: " + FinalData.participantAge.ToString());
-		writer.WriteLine (); 	      
-		writer.WriteLine ("_____________________________________________________________________________________________________________________________________________________________________"); 
-		writer.WriteLine ("Trial#  , Correct , Button Correct , Button Pressed , Level, Score, #RedWeights, #YellowWeights ,TimeSet, TimeChoose, TimeTotal, RedPos1, RedPos2, YellPos1, YellPos2"); 
-		writer.WriteLine ("_____________________________________________________________________________________________________________________________________________________________________"); 
-		
+		writer.WriteLine ("Trial#, Feedback, Correct , Button Correct , Button Pressed , Level, Score, #RedWeights, #YellowWeights, #GreenWeights ,TimeSet, TimeChoose, TimeTotal, RedPos1, RedPos2, RedPos3, RedPos4, YellPos1, YellPos2, YellPos3, YellPos4, GreenPos1, GreenPos2, GreenPos3, GreenPos4"); 
+		writer.WriteLine ("Date and time: " + System.DateTime.Now.ToString()+ ", Condition: Static Feedback, Participant #: " );
 	}
 	
 	public void StoreStartTime ()
-	{
+	{	
+		// Time when NEW TRIAL STARTS, push of next button, in first trial with start
 		startTime = System.DateTime.Now;
 	}
 	
 	public void StoreReadyTime()
 	{
+		// Time when ready button is pressed
 		readyTime = System.DateTime.Now; 
 	}
 	
 	public void StoreEndTime()
-	{
+	{	
+		//Time when LEFT, RIGHT, EQUILIBRIUM button is pressed, END OF TRIAL
 		endTime = System.DateTime.Now; 
 	}
 	
@@ -135,12 +140,12 @@ public class Textfile : MonoBehaviour {
 		
 		reactionTime1 = readyTime.Subtract(startTime); 
 		reactionTime2 = endTime.Subtract(readyTime); 
-		reactionTime3 = endTime.Subtract (startTime); 
+		reactionTime3 = endTime.Subtract (startTime); // Complete Time of trial 
 		
 		// reactionTime3 = endTime.Subtract(readyTime); 
 		
 	
-		writer.WriteLine (Tasknumber.taskCount.ToString () + "," + loggedCorrect.ToString () + "," + loggedCorrectButton.ToString() + "," + Useranswer.whichbutton.ToString()+ "," + loggedLevelNumber.ToString() + ","+ loggedScore.ToString() + "," + loggedNumberWeightsRed.ToString() + "," + loggedNumberWeightsYellow.ToString() + "," +  reactionTime1.ToString()+ "," +  reactionTime2.ToString() +"," + reactionTime3.ToString()+","+CubePosition.positionRedCube1.ToString() + "," + CubePosition.positionRedCube2.ToString() + ","+ CubePosition.positionRedCube3.ToString() + "," + CubePosition.positionRedCube4.ToString() +","+ CubePosition.positionYellowCube1.ToString() + "," + CubePosition.positionYellowCube2.ToString() + "," + CubePosition.positionYellowCube3.ToString() + "," + CubePosition.positionYellowCube4.ToString()); 
+		writer.WriteLine (Tasknumber.taskCount.ToString () +","+FeedbackType.feedbackReturn.ToString()+ "," + loggedCorrect.ToString () + "," + loggedCorrectButton.ToString() + "," + Useranswer.whichbutton.ToString()+ "," + loggedLevelNumber.ToString() + ","+ loggedScore.ToString() + "," + Weightnumber.numberWeightsRed.ToString() + "," + Weightnumber.numberWeightsYellow.ToString() + "," + Weightnumber.numberWeightsGreen.ToString() + "," +  reactionTime1.ToString()+ "," +  reactionTime2.ToString() +"," + reactionTime3.ToString()+","+CubePosition.positionRedCube1.ToString() + "," + CubePosition.positionRedCube2.ToString() + ","+ CubePosition.positionRedCube3.ToString() + "," + CubePosition.positionRedCube4.ToString() +","+ CubePosition.positionYellowCube1.ToString() + "," + CubePosition.positionYellowCube2.ToString() + "," + CubePosition.positionYellowCube3.ToString() + "," + CubePosition.positionYellowCube4.ToString()+","+ CubePosition.positionGreenCube1.ToString()+","+ CubePosition.positionGreenCube2.ToString()+","+CubePosition.positionGreenCube3.ToString()+","+CubePosition.positionGreenCube4.ToString()); 
 		writer.Flush ();
 		
 	}

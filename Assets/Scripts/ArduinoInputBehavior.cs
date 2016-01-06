@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 //using System.IO.Ports;
 
@@ -17,9 +17,14 @@ public class ArduinoInputBehavior : MonoBehaviour {
 	public int leftW2Yell; 
 	public int rightW1Red;
 	public int rightW2Yell;
+	public int doubleValueLeft;
+	public int doubleValueRight; 
 
 	public bool pushbutton = false;
 	public int whichbutton = 0; 
+
+	public int powerleft; 
+	public int powerright;
 
 	
 	// SerialPort arduinoinput = new SerialPort("COMX", 9600);
@@ -50,16 +55,82 @@ public class ArduinoInputBehavior : MonoBehaviour {
 
 	void Update ()
 	{
-		leftpos1 = Instructionvalues.pnl1;
-		leftpos2 = Instructionvalues.pnl2;
-		rightpos1 = Instructionvalues.pnr1;
-		rightpos2 = Instructionvalues.pnr2;
+		if (Instructionvalues.pnl1 == 1) {
+			leftpos1 = 6;
+		} else if (Instructionvalues.pnl1 == 2) {
+			leftpos1 = 5; 
+		} else if (Instructionvalues.pnl1 == 3) {
+			leftpos1 = 4; 
+		} else if (Instructionvalues.pnl1 == 4) {
+			leftpos1 = 3; 
+		} else if (Instructionvalues.pnl1 == 5) {
+			leftpos1 = 2; 
+		} else if (Instructionvalues.pnl1 == 6) {
+			leftpos1 = 1; 
+		}
+
+		if (Instructionvalues.pnl2 == 1) {
+			leftpos2 = 6;
+		} else if (Instructionvalues.pnl2 == 2) {
+			leftpos2 = 5; 
+		} else if (Instructionvalues.pnl2 == 3) {
+			leftpos2 = 4; 
+		} else if (Instructionvalues.pnl2 == 4) {
+			leftpos2 = 3; 
+		} else if (Instructionvalues.pnl2 == 5) {
+			leftpos2 = 2; 
+		} else if (Instructionvalues.pnl2 == 6) {
+			leftpos2 = 1; 
+		}
+
+		if (Instructionvalues.pnr1 == 1) {
+			rightpos1 = 6;
+		} else if (Instructionvalues.pnr1 == 2) {
+			rightpos1 = 5; 
+		} else if (Instructionvalues.pnr1 == 3) {
+			rightpos1 = 4; 
+		} else if (Instructionvalues.pnr1 == 4) {
+			rightpos1 = 3; 
+		} else if (Instructionvalues.pnr1 == 5) {
+			rightpos1 = 2; 
+		} else if (Instructionvalues.pnr1 == 6) {
+			rightpos1 = 1; 
+		}
+
+		if (Instructionvalues.pnr2 == 1) {
+			rightpos2 = 6;
+		} else if (Instructionvalues.pnr2 == 2) {
+			rightpos2 = 5; 
+		} else if (Instructionvalues.pnr2 == 3) {
+			rightpos2 = 4; 
+		} else if (Instructionvalues.pnr2 == 4) {
+			rightpos2 = 3; 
+		} else if (Instructionvalues.pnr2 == 5) {
+			rightpos2 = 2; 
+		} else if (Instructionvalues.pnr2 == 6) {
+			rightpos2 = 1; 
+		}
+
+
+//		leftpos2 = Instructionvalues.pnl2;
+//		rightpos1 = Instructionvalues.pnr1;
+//		rightpos2 = Instructionvalues.pnr2;
 		leftW1Red = Instructionvalues.LeftW1;
 		leftW2Yell = Instructionvalues.LeftW2;
 		rightW1Red = Instructionvalues.RightW1;
 		rightW2Yell = Instructionvalues.RightW2;
 
-		SetWeigth(leftpos1, leftpos2, rightpos1, rightpos2, leftW1Red, leftW2Yell, rightW1Red, rightW2Yell);
+		doubleValueLeft = 1; 
+		doubleValueRight = 1; 
+
+		if (leftW1Red == leftW2Yell) {
+			doubleValueLeft = 2; 
+		}
+		if (rightW1Red == rightW2Yell) {
+			doubleValueRight = 2; 
+		}
+
+		SetWeigth(leftpos1, leftpos2, rightpos1, rightpos2, leftW1Red, leftW2Yell, rightW1Red, rightW2Yell, doubleValueLeft, doubleValueRight);
 
 
 	}
@@ -81,10 +152,12 @@ public class ArduinoInputBehavior : MonoBehaviour {
 
 
 	//balance coded for 1 = left, 2 = right, 0 = balanced
-	int SetWeigth (int leftpos1, int leftpos2, int rightpos1, int rightpos2, int leftW1, int leftW2, int rightW1, int rightW2)
-	{
-		int powerleft = leftpos1 * leftW1 + leftpos2 * leftW2;
-		int powerright = rightpos1 * rightW1 + rightpos2 * rightW2;
+	int SetWeigth (int leftpos1, int leftpos2, int rightpos1, int rightpos2, int leftW1, int leftW2, int rightW1, int rightW2, int dValLeft, int dValRight)
+	{	
+
+		powerleft = (leftpos1 * leftW1 + leftpos2 * leftW2)*2*dValLeft;
+		powerright = (rightpos1 * rightW1 + rightpos2 * rightW2)*dValRight;
+
 		balance = 0;
 
 		if (powerleft > powerright) {
@@ -95,6 +168,9 @@ public class ArduinoInputBehavior : MonoBehaviour {
 		} 
 
 		return balance;
+		return powerleft; 
+		return powerright; 
+
 
 	}
 	

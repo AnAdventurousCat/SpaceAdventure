@@ -45,12 +45,12 @@ public class Userfinaldata : MonoBehaviour {
 
 	}
 
-	public void SaveParticipantNumber()
-	{
-		participantNumberObject = GameObject.Find ("ParticipantNumberText");
-		participantNumberData = participantNumberObject.GetComponent<Capturetextdata> ();
-		participantNumber = participantNumberData.participantNumber;
-
-	}
+//	public void SaveParticipantNumber()
+//	{
+//		participantNumberObject = GameObject.Find ("ParticipantNumberText");
+//		participantNumberData = participantNumberObject.GetComponent<Capturetextdata> ();
+//		participantNumber = participantNumberData.participantNumber;
+//
+//	}
 
 }

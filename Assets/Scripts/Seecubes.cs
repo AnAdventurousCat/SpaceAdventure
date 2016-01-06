@@ -10,7 +10,7 @@ public class Seecubes : MonoBehaviour {
 	public string colorName; 
 	private ToogleOptions GameConfiguration;
 	private GameObject GameConfigurationToogles;
-	int cubeColor=0;
+	int cubeColor = 0;
 	bool cubeIsActive=false;
 
 	int nameLenght; 
@@ -21,6 +21,7 @@ public class Seecubes : MonoBehaviour {
 	private InputOutputADS ADSystem;
 
 	void Start (){
+
 		nameLenght = gameObject.name.Length;
 		cubeIndex =  int.Parse(gameObject.name[nameLenght - 1].ToString());
 
@@ -30,9 +31,9 @@ public class Seecubes : MonoBehaviour {
 		gameObject.GetComponent<Collider> ().enabled = false;
 		//Valores = Objeto.GetComponent<Instruction>();	
 		Valores = Objeto.GetComponent<Instruction> (); 
-		//gameObject.GetComponent<Renderer> ().enabled = false;
-		gameObject.GetComponent<Renderer> ().material.color = Color.clear;
-		gameObject.transform.localScale = new Vector3(1.4f,1.4f,1.4f);
+		gameObject.GetComponent<Renderer> ().enabled = false;
+		//gameObject.GetComponent<Renderer> ().material.color = Color.clear;
+		gameObject.transform.localScale = new Vector3(1.4f,0.6f,1.4f);
 	}
 	
     void Update () 
@@ -56,10 +57,12 @@ public class Seecubes : MonoBehaviour {
 
 		if (((Valores.pnr1 == cubeIndex || Valores.pnr2 == cubeIndex) && gameObject.tag == "Right")||((Valores.pnl1 == cubeIndex || Valores.pnl2 == cubeIndex) && gameObject.tag == "Left"))
 		{
+			gameObject.GetComponent<Renderer> ().enabled = true;
 			gameObject.GetComponent<Collider> ().enabled = true;
 		} else {
 			gameObject.GetComponent<Collider> ().enabled = false;	
-			gameObject.GetComponent<Renderer> ().material.color = Color.clear;
+			gameObject.GetComponent<Renderer> ().enabled = false;
+			//gameObject.GetComponent<Renderer> ().material.color = Color.clear;
 		}
 
 		if ((Valores.pnr1 == cubeIndex) && gameObject.tag == "Right"){
@@ -94,7 +97,9 @@ public class Seecubes : MonoBehaviour {
 		} else if (color == "yellow") {
 			gameObject.GetComponent<Renderer> ().material.color = Color.yellow;
 		
-		} 
+		} else if (color == "green") {
+			gameObject.GetComponent<Renderer> ().material.color = Color.green;
+		}
 	}
 
 	public void ActiveCubesAD(){

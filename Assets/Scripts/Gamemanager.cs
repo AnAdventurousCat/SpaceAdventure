@@ -9,22 +9,12 @@ public class Gamemanager : MonoBehaviour {
 	public float performancelevel;
 	public int adaptiveTaskNumber;
 
-//	public int pretestCount; 
-//	bool pretest; 
-
 	private GameObject ScoreObject;
 	private Animate Scorecode;
 
 	ToogleOptions GameConfiguration;
 	GameObject GameConfigurationToogles;
 
-
-//	public void addPretestCount (){
-//		pretestCount = pretestCount + 1; 
-//		if (pretestCount > 5) {
-//			pretest = false; 
-//		}
-//	}
 
 	public void addtrial(){
 
@@ -43,80 +33,43 @@ public class Gamemanager : MonoBehaviour {
 	void Start (){
 		ScoreObject = GameObject.Find ("Scale");
 		Scorecode = ScoreObject.GetComponent<Animate>();
-//		pretest = true; 
-
-		if (GameObject.Find ("GameConfiguration") == true) {
-			GameConfigurationToogles = GameObject.Find ("GameConfiguration");
-			GameConfiguration = GameConfigurationToogles.GetComponent<ToogleOptions> ();
-
-			if (GameConfiguration.ActiveAdaptiveDificulty == true) {
-				levelnumber = 0;
-			} else {
-					levelnumber = 1;
-			}
-			if 
-			(GameConfiguration.ActiveAdaptiveLevels == true) {
-				PerformanceCalculator ();
-			} else {
-					levelnumber = 1;
-			}
-		}
-		 
-		//pretestCount = 1; 
 
 		taskCount = 1;
+		levelnumber = 1; 
 		adaptiveTaskNumber = 1;
 
 	}
 
-	public void PerformanceCalculator(){
-
-		if (GameConfiguration.ActiveAdaptiveLevels == true) {
-
-
-			if (adaptiveTaskNumber > 4) {
-				adaptiveTaskNumber = 1;
-			}
-
-
-			if (taskCount > 4) {
-				performancelevel = ((score * 100) / taskCount);
-			} else {
-				performancelevel = 50;
-			}
-		}
-	}
 
 
 			
 	public void Checklevel (){
 
 
-		if(GameConfiguration.ActiveAdaptiveDificulty == true || GameConfiguration.ActiveAdaptiveLevels == true) {
-				if (taskCount == 31) {
-					Application.LoadLevel ("UserInstructionTask2");
-				}
-				}
-
-		else {
+//		if (GameConfiguration.ActiveAdaptiveDificulty == true || GameConfiguration.ActiveAdaptiveLevels == true) {
+//			if (taskCount == 31) {
+//				Application.LoadLevel ("UserInstructionTask2");
+//			}
+//		}
+//
+//		else {
 		
-				if (taskCount <= 5) {
+				if (taskCount <= 15) {
 					levelnumber = 1; 
 					
-				} else if (taskCount <= 10) {
+				} else if (taskCount <= 30) {
 					levelnumber = 2;
 					
-				} else if (taskCount <= 20) {
+				} else if (taskCount <= 45) {
 					levelnumber = 3;
 					
-				} else if (taskCount <= 30) {
+				} else if (taskCount <= 60) {
 					levelnumber = 4;
 
 
-				}else if (taskCount == 31) {
-					Application.LoadLevel ("UserInstructionTask2");
-					
-			}
-		}
+				}else if (taskCount > 60) {
+				Application.LoadLevel ("FinalSceneSpace");
+				}
+//		}
 	}
 }

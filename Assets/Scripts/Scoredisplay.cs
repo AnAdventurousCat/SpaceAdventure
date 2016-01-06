@@ -20,7 +20,7 @@ public class Scoredisplay : MonoBehaviour {
 	void Update () 
 
 		{
-		text.text = "Score:" + Scorecalculator.score;
+		text.text = "Points: " + Scorecalculator.score;
 			
 		}
 	
